@@ -55,6 +55,17 @@ void cBoard::mf_resetBoard()
 
 bool cBoard::mf_checkCombination(unsigned short int* combi, unsigned short int size)
 {
+	//check if the values are the same
+	if (combi[0] == combi[1])
+	{
+		//if they are and bigger than 4 the players only possible move is to clap 10
+		if (combi[0] >= 5)
+		{
+			combi[0] = 10;
+			size = 1;
+		}
+	}
+
 	//check wether the bot requests one or two values
 	if (size == 1)
 	{

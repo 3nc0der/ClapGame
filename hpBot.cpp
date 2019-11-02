@@ -65,6 +65,7 @@ void cHPBot::mf_play()
 
 	std::cout << mv_currentPoints << std::endl;
 	mf_calcPointsPerRound();
+	std::cout << mv_averagePointsPerRound << std::endl << std::endl;
 }
 
 inline unsigned short int * cHPBot::mf_requestCombi()
@@ -76,5 +77,5 @@ inline unsigned short int * cHPBot::mf_requestCombi()
 
 void cHPBot::mf_calcPointsPerRound()
 {
-	std::cout << mv_currentPoints / mv_roundsPlayed << std::endl << std::endl;
+	mv_averagePointsPerRound = (float)mv_currentPoints / (float)mv_roundsPlayed;
 }

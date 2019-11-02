@@ -15,3 +15,9 @@ void cPlayer::mf_play()
 	cube1 = cHelper::getRandom(6, 1);
 	cube2 = cHelper::getRandom(6, 1);
 }
+
+void cPlayer::mf_resetPlayer()
+{
+	mv_currentPoints = 0;
+	mv_roundsPlayed = 0;
+}

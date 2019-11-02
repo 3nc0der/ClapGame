@@ -49,6 +49,31 @@ void cGame::mf_run()
 		//every round is played
 		mf_playRound();
 	}
+
+	float lowestPPR = 100.0f;
+
+	//iterate through all players
+	std::vector<cPlayer*>::iterator i;
+
+	for (i = mv_playerList.begin(); i != mv_playerList.end(); i++)
+	{
+		//choose the player with the lowest PPRAverage
+		if ((*i)->mf_getPPRAverage() < lowestPPR)
+			lowestPPR = (*i)->mf_getPPRAverage();
+	}
+
+	std::cout << std::endl << lowestPPR << std::endl;
+
+	std::cout << "the lowest bot could get " << lowestPPR / 55.0f * 100.0f << " % from the highest score.";
+
+	//reset everything
+	mv_roundsPlayed = 0;
+
+	for (i = mv_playerList.begin(); i != mv_playerList.end(); i++)
+	{
+		//reset every player
+		(*i)->mf_resetPlayer();
+	}
 }
 
 void cGame::mf_addPlayer(cPlayer * player)

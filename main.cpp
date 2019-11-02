@@ -20,7 +20,17 @@ int main()
 
 	game->mf_init(init);
 
-	game->mf_run();
+	int buffer = 1;
+
+	do
+	{
+		game->mf_run();
+
+		std::cout << "continue? 1 = yes / 0 = no" << std::endl;
+		std::cin >> buffer;
+		std::cout << std::endl;
+
+	} while (buffer != 0);
 
 	return 0;
 }
