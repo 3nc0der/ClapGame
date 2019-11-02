@@ -16,14 +16,26 @@ cBoard::~cBoard()
 
 bool cBoard::mf_clapPedal(unsigned short int* pedals, unsigned short int size)
 {
-	//run through the given values
-	for (int i = 0; i < size; i++)
+	if (size == 1)
 	{
 		//and check by the values wether these pedals are available
-		if (!mv_pedals[pedals[i]-1].clapped)
+		if (!mv_pedals[pedals[0] - 1].clapped)
 		{
-			mv_pedals[pedals[i] - 1].clapped = true;
+			mv_pedals[pedals[0] - 1].clapped = true;
 			return true;
+		}
+	}
+	else
+	{
+		//and check by the values wether these pedals are available
+		if (!mv_pedals[pedals[0] - 1].clapped)
+		{
+			if (!mv_pedals[pedals[1] - 1].clapped)
+			{
+				mv_pedals[pedals[0] - 1].clapped = true;
+				mv_pedals[pedals[1] - 1].clapped = true;
+				return true;
+			}
 		}
 	}
 
@@ -74,4 +86,19 @@ bool cBoard::mf_checkCombination(unsigned short int* combi, unsigned short int s
 	}
 
 	return false;
+}
+
+unsigned int cBoard::mf_getPoints()
+{
+	unsigned int counter = 0;
+
+	for (int i = 0; i < 10; i++)
+	{
+		if (!mv_pedals[i].clapped)
+		{
+			counter += mv_pedals[i].value;
+		}
+	}
+
+	return counter;
 }

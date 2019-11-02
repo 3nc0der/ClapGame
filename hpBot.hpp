@@ -15,4 +15,7 @@ class cHPBot : public cBot
 
 		//asks the game if this combination is available on the board
 		inline unsigned short int* mf_requestCombi();
+
+		//clacs the points per round ave
+		void mf_calcPointsPerRound();
 };

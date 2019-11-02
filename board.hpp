@@ -24,6 +24,9 @@ class cBoard
 		//checks if the board has the combination the player requests available
 		bool mf_checkCombination(unsigned short int* combi, unsigned short int size);
 
+		//gives the current points left on the board
+		unsigned int mf_getPoints();
+
 	private:
 
 		sPedal mv_pedals[10];//the pedals
