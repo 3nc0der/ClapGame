@@ -10,8 +10,3 @@ void cBot::mf_play()
 	mv_requestedCombi[0] = cube1;
 	mv_requestedCombi[1] = cube2;
 }
-
-unsigned short int * cBot::mf_requestCombi()
-{
-	return mv_requestedCombi;
-}

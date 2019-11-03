@@ -51,6 +51,7 @@ void cGame::mf_run()
 	}
 
 	float lowestPPR = 100.0f;
+	const char* name = "unknown";
 
 	//iterate through all players
 	std::vector<cPlayer*>::iterator i;
@@ -59,12 +60,15 @@ void cGame::mf_run()
 	{
 		//choose the player with the lowest PPRAverage
 		if ((*i)->mf_getPPRAverage() < lowestPPR)
+		{
 			lowestPPR = (*i)->mf_getPPRAverage();
+			name = (*i)->mf_getName();
+		}
 	}
 
 	std::cout << std::endl << lowestPPR << std::endl;
 
-	std::cout << "the lowest bot could get " << lowestPPR / 55.0f * 100.0f << " % from the highest score.";
+	std::cout << "the lowest bot (" << name << ") could get " << lowestPPR / 55.0f * 100.0f << " % from the highest score.";
 
 	//reset everything
 	mv_roundsPlayed = 0;

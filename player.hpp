@@ -21,6 +21,7 @@ class cPlayer
 		unsigned short int mf_getRoundsPlayed() { return mv_roundsPlayed; };
 		unsigned short int mf_getPlayerID() { return mv_playerID; };
 		float mf_getPPRAverage() { return mv_averagePointsPerRound; };
+		const char* mf_getName() { return mv_name; };//the players name
 
 		//resets the player for a new round
 		void mf_resetPlayer();
@@ -33,4 +34,5 @@ class cPlayer
 		unsigned short int mv_playerID;//ID of the player for identification
 		cBoard mv_board;//this players board
 		unsigned short int mv_perfectRounds;//indicates the amount of rounds in which the player has 0 points added to his account
+		const char* mv_name;//the type of this bot
 };

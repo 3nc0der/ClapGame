@@ -1,5 +1,6 @@
 #include "game.hpp"
 #include "hpBot.hpp"
+#include "lpBot.hpp"
 
 using namespace std;
 
@@ -8,6 +9,7 @@ int main()
 
 
 	std::vector<cPlayer*> players;
+	players.push_back(new cLPBot());
 	players.push_back(new cHPBot());
 
 	//fill in a init struct for the game

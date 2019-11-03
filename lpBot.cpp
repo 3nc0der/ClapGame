@@ -1,19 +1,19 @@
-#include "hpBot.hpp"
+#include "lpBot.hpp"
 
-cHPBot::cHPBot()
+cLPBot::cLPBot()
 {
 	mv_try = 1;
 	mv_currentPoints = 0;
 	mv_roundsPlayed = 0;
 	mv_perfectRounds = 0;
-	mv_name = "HPBot";
+	mv_name = "LPBot";
 }
 
-cHPBot::~cHPBot()
+cLPBot::~cLPBot()
 {
 }
 
-void cHPBot::mf_play()
+void cLPBot::mf_play()
 {
 	bool hasPossibleMove = true;
 
@@ -28,53 +28,58 @@ void cHPBot::mf_play()
 		{
 			switch (mv_try)
 			{
-				case 1:
+			case 1:
+			{
+				if ((cube1 == cube2) && (cube1 < 5))
 				{
-					if (cube1 == cube2)
-					{
-						mv_requestedCombi[0] = 10;
-						size = 1;
-					}
-					else
-					{
-						mv_requestedCombi[0] = cube1 + cube2;
-						size = 1;
-					}
-				}break;
+					mv_requestedCombi[0] = cube1 + cube2;
+					size = 1;
+				}
+				else if((cube1 == cube2) && (cube1 >= 5))
+				{
+					mv_requestedCombi[0] = 10;
+					size = 1;
+				}
+				else
+				{
+					mv_requestedCombi[0] = cHelper::MAX(cube1, cube2) - cHelper::MIN(cube1, cube2);
+					size = 1;
+				}
+			}break;
 
-				case 2:
+			case 2:
+			{
+				if ((cube1 == cube2) && (cube1 >= 5))
 				{
-					if ((cube1 == cube2) && (cube1 >= 5))
-					{
-						mv_try = 4;
-						hasPossibleMove = false;
-					}
-					else if ((cube1 == cube2) && (cube1 < 5))
-					{
-						mv_requestedCombi[0] = cube1 + cube2;
-						size = 1;
-					}
-					else
-					{
-						mv_requestedCombi[0] = cube1;
-						mv_requestedCombi[1] = cube2;
-						size = 2;
-					}
-				}break;
+					mv_try = 4;
+					hasPossibleMove = false;
+				}
+				else if ((cube1 == cube2) && (cube1 < 5))
+				{
+					mv_requestedCombi[0] = cube1 + cube2;
+					size = 1;
+				}
+				else
+				{
+					mv_requestedCombi[0] = cube1;
+					mv_requestedCombi[1] = cube2;
+					size = 2;
+				}
+			}break;
 
-				case 3:
+			case 3:
+			{
+				if (cube1 == cube2)
 				{
-					if (cube1 == cube2)
-					{
-						mv_try = 4;
-						hasPossibleMove = false;
-					}
-					else
-					{
-						mv_requestedCombi[0] = cHelper::MAX(cube1, cube2) - cHelper::MIN(cube1, cube2);
-						size = 1;
-					}
-				}break;
+					mv_try = 4;
+					hasPossibleMove = false;
+				}
+				else
+				{
+					mv_requestedCombi[0] = cube1 + cube2;
+					size = 1;
+				}
+			}break;
 			}
 
 			if (mv_board.mf_checkCombination(mv_requestedCombi, size))
@@ -99,7 +104,7 @@ void cHPBot::mf_play()
 
 	mv_roundsPlayed++;
 
-	std::cout << "HPBot -----------------------------------------------" << std::endl;
+	std::cout << "LPBot -----------------------------------------------" << std::endl;
 	std::cout << "Current Points: " << mv_currentPoints << std::endl;
 	mf_calcPointsPerRound();
 	std::cout << "PPR Average: " << mv_averagePointsPerRound << std::endl;
@@ -107,7 +112,7 @@ void cHPBot::mf_play()
 	std::cout << "-----------------------------------------------------" << std::endl;
 }
 
-void cHPBot::mf_calcPointsPerRound()
+void cLPBot::mf_calcPointsPerRound()
 {
 	mv_averagePointsPerRound = (float)mv_currentPoints / (float)mv_roundsPlayed;
 }

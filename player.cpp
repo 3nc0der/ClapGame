@@ -20,4 +20,5 @@ void cPlayer::mf_resetPlayer()
 {
 	mv_currentPoints = 0;
 	mv_roundsPlayed = 0;
+	mv_perfectRounds = 0;
 }

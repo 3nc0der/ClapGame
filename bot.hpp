@@ -11,9 +11,6 @@ class cBot : public cPlayer
 		//bot plays a turn
 		virtual void mf_play();
 
-		//asks the game if this combination is available on the board
-		virtual unsigned short int * mf_requestCombi();
-
 	protected:
 
 		unsigned short int mv_requestedCombi[2];//what combi the bot wants to activate on the board

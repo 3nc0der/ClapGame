@@ -127,6 +127,7 @@
     <ClCompile Include="bot.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="hpBot.cpp" />
+    <ClCompile Include="lpBot.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
   </ItemGroup>
@@ -136,6 +137,7 @@
     <ClInclude Include="game.hpp" />
     <ClInclude Include="helper.hpp" />
     <ClInclude Include="hpBot.hpp" />
+    <ClInclude Include="lpBot.hpp" />
     <ClInclude Include="player.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
