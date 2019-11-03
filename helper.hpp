@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
+#include <fstream>
 
 static bool randInitialized = false;//tells wether rand was initialized or not
 
@@ -37,6 +38,35 @@ class cHelper
 		static inline int MIN(int a, int b)
 		{
 			return (a < b) ? a : b;
+		}
+
+		static void makeChanceTable()
+		{
+			float table[6][6] = {};
+
+			for (int i = 0; i < 6; i++)
+			{
+				for (int j = 0; j < 6; j++)
+				{
+					table[i][j] = 0.0f;
+				}
+			}
+
+			for (int i = 0; i < 1000; i++)
+			{
+				int dice1 = getRandom(6, 1);
+				int dice2 = getRandom(6, 1);
+
+				table[dice1 - 1][dice2 - 1] += 1.0f;
+			}
+
+			for (int i = 0; i < 6; i++)
+			{
+				for (int j = 0; j < 6; j++)
+				{
+					table[i][j] /= 1000.0f;
+				}
+			}
 		}
 
 	private:

@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-
+	cHelper::makeChanceTable();
 
 	std::vector<cPlayer*> players;
 	players.push_back(new cLPBot());
