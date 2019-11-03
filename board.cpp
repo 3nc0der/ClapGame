@@ -71,7 +71,7 @@ bool cBoard::mf_checkCombination(unsigned short int* combi, unsigned short int s
 	{
 		//check if the request is in a validated range
 		if (combi[0] > 10)
-			combi[0] = 10;
+			return false;
 		else if (combi[0] == 0)
 			combi[0] = 10;
 

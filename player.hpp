@@ -32,4 +32,5 @@ class cPlayer
 		float mv_averagePointsPerRound;//holds how much points this player gains per round on average
 		unsigned short int mv_playerID;//ID of the player for identification
 		cBoard mv_board;//this players board
+		unsigned short int mv_perfectRounds;//indicates the amount of rounds in which the player has 0 points added to his account
 };

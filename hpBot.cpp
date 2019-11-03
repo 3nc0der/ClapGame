@@ -5,6 +5,7 @@ cHPBot::cHPBot()
 	mv_try = 1;
 	mv_currentPoints = 0;
 	mv_roundsPlayed = 0;
+	mv_perfectRounds = 0;
 }
 
 cHPBot::~cHPBot()
@@ -28,21 +29,50 @@ void cHPBot::mf_play()
 			{
 				case 1:
 				{
-					mv_requestedCombi[0] = cube1 + cube2;
-					size = 1;
+					if (cube1 == cube2)
+					{
+						mv_requestedCombi[0] = 10;
+						size = 1;
+					}
+					else
+					{
+						mv_requestedCombi[0] = cube1 + cube2;
+						size = 1;
+					}
 				}break;
 
 				case 2:
 				{
-					mv_requestedCombi[0] = cube1;
-					mv_requestedCombi[1] = cube2;
-					size = 2;
+					if ((cube1 == cube2) && (cube1 >= 5))
+					{
+						mv_try = 4;
+						hasPossibleMove = false;
+					}
+					else if ((cube1 == cube2) && (cube1 < 5))
+					{
+						mv_requestedCombi[0] = cube1 + cube2;
+						size = 1;
+					}
+					else
+					{
+						mv_requestedCombi[0] = cube1;
+						mv_requestedCombi[1] = cube2;
+						size = 2;
+					}
 				}break;
 
 				case 3:
 				{
-					mv_requestedCombi[0] = cHelper::MAX(cube1, cube2) - cHelper::MIN(cube1, cube2);
-					size = 1;
+					if (cube1 == cube2)
+					{
+						mv_try = 4;
+						hasPossibleMove = false;
+					}
+					else
+					{
+						mv_requestedCombi[0] = cHelper::MAX(cube1, cube2) - cHelper::MIN(cube1, cube2);
+						size = 1;
+					}
 				}break;
 			}
 
@@ -58,14 +88,20 @@ void cHPBot::mf_play()
 		}
 	}
 
+	if (mv_board.mf_getPoints() == 0)
+	{
+		mv_perfectRounds++;
+	}
+
 	mv_currentPoints += mv_board.mf_getPoints();
 	mv_board.mf_resetBoard();
 
 	mv_roundsPlayed++;
 
-	std::cout << mv_currentPoints << std::endl;
+	std::cout << "Current Points: " << mv_currentPoints << std::endl;
 	mf_calcPointsPerRound();
-	std::cout << mv_averagePointsPerRound << std::endl << std::endl;
+	std::cout << "PPR Average: " << mv_averagePointsPerRound << std::endl;
+	std::cout << "Perfect rounds: " << mv_perfectRounds << std::endl << std::endl;
 }
 
 inline unsigned short int * cHPBot::mf_requestCombi()
